@@ -3,6 +3,7 @@ import { Button, Input, message } from 'antd'
 import { connect } from 'dva'
 import './styles.less'
 
+console.log('改登录');
 
 export default connect(state => ({
   
