@@ -1,0 +1,15 @@
+export default {
+  // '@btn-border-radius-base': '4px',
+  // '@btn-height-base': '38px',
+  // '@select-dropdown-height': '38px',
+  // '@select-dropdown-line-height': '38px',
+  // '@input-height-base': '38px',
+  // '@border-radius-base': '4px',
+  // '@blue-6': '#4E86FC',
+  // '@table-row-hover-bg': '#F3F6F9',
+  // '@select-item-selected-bg': '#F8F9FB',
+  // '@tabs-card-active-color': '#FF0000',
+  // '@tabs-active-color': '#FF0000',
+  // '@table-bg': '#FF0000',
+  // '@table-header-bg': '#00FF00',
+}
