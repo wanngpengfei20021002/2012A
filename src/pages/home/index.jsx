@@ -6,6 +6,7 @@ import QCard from './componets/QCard'
 import { history } from 'umi'
 import './styles.less'
 
+// 我交小白
 export default function Home (props) {
 
   return (
