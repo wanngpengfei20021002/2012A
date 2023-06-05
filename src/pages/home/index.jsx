@@ -4,6 +4,7 @@ import { Spin, Pagination, Button, Table, Input, DatePicker, Form } from 'antd'
 import shortid  from 'shortid'
 import './styles.less'
 
+// xxxxxxx
 export default connect(state => {
   return {
     result: state.home.data,
