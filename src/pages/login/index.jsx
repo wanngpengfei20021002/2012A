@@ -4,6 +4,7 @@ import shortid from 'shortid'
 import './styles.less'
 
 // dddddddddd
+// 小白登录做完了
 function MyForm (opt) {
   const { onBlur, id, index } = opt
 
