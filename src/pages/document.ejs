@@ -13,6 +13,38 @@
 </body>
 
 
+<script>
+  // 普通函数 this: this 代表当前正在执行的对象
+  // 箭头函数:
+    // 箭头函数没有自己的 this, 箭头函数的 this 是在箭头函数“定义的时候”就"固定不变了", 会去上一级作用域链去寻找他的 this
+    // 只有一条语句 默认带 return
+    // 参数只有一个 可以省略括号
+    // arguments
 
+  
+  // var user = '小花'
+
+  // const obj = {
+  //   user: '小白',
+  // }
+
+  // const fun = () => {
+  //   // this === window
+  //   console.log(this.user);
+  // }
+
+  // // window.fun
+  // // 小花
+  // fun()
+
+  // // 小白
+  // // obj.fun
+  // // this === window
+  // fun.call(obj)
+
+  // // this === window
+  // fun.apply(obj)
+
+</script>
 
 </html>

@@ -1,5 +1,6 @@
 import _ from 'lodash'
-import request from '@/utils/request'
+import api from '@/services'
+import { message } from 'antd'
 
 export default {
   namespace: 'home',
@@ -32,17 +33,22 @@ export default {
   effects: {
     // 获取列表数据
     *fetch ({ payload }, { call, put, select }) {
-      const getLst = () => {
-        return request.get('/Home/Apis/sampleList', payload)
-      }
-
-      const res = yield call(getLst)
+      const res = yield call(api.sampleList, payload)
 
       if (!res.code) {
         yield put({
           type: 'setData',
           payload: res.result,
         })
+      }
+    },
+
+    // 提交
+    *fetchPut ({ payload }, { call, put, select }) {
+      const res = yield call(api.samplePut1, payload)
+
+      if (!res.code) {
+        message.success('提交成功!')
       }
     },
 

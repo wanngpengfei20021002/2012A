@@ -1,8 +1,8 @@
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2'
-// import 'antd/dist/antd.less';
-import 'antd/dist/reset.css';
+import 'antd/dist/antd.less';
+// import 'antd/dist/reset.css';
 // import 'lib-flexible'
 import './styles/index.less'
 
