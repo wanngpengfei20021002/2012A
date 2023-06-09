@@ -12,6 +12,8 @@ export default [
     routes: [
       { path: '/home', component: './home', title: '首页' },
       { path: '/form', component: './xform', title: '表单' },
+      { path: '/login/:id', component: './login', title: '登录' },
+      { path: '/login', component: './login', title: '登录' },
     ]
   },
 ]

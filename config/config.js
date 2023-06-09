@@ -4,7 +4,7 @@ import theme from './theme.config'
 import routes from './router.config'
 import env from './env'
 
-const pxtorem = require('postcss-pxtorem')
+// const pxtorem = require('postcss-pxtorem')
 
 const path = require('path')
 
@@ -15,11 +15,11 @@ export default defineConfig({
   dynamicImport: {
     // loading: '@/pages/loading',
   },
-  targets: {
-    ie: 11,
-  },
   antd: {
     mobile: false,
+  },
+  targets: {
+    ie: 11,
   },
   define: {
     environment: process.env.ENV,
@@ -61,7 +61,7 @@ export default defineConfig({
   //     // 350 / 10 = 35
   //     rootValue: 70, // 指定转换倍率 我现在设置这个表示1rem=10px;
   //     propList: ['*'], // 属性列表，表示你要把哪些css属性的px转换成rem，这个*表示所有
-  //     selectorBalckList: ['.antd-'], // 匹配不被转换为rem的选择器，例如UI框架antd-mobile
+  //     selectorBalckList: ['.antd-', '.adm-'], // 匹配不被转换为rem的选择器，例如UI框架antd-mobile
   //     exclude: /node_modules/i,
   //   }),
   // ],
@@ -79,8 +79,4 @@ export default defineConfig({
       localIdentName: '[name]__[local]___[hash:base64:5]'
     },
   },
-  // dva: {
-  //   immer: true,
-  // }
-  // mfsu: {},
 })

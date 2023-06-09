@@ -4,8 +4,8 @@ import { history, useLocation } from 'umi'
 import { MailOutlined, CalendarOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons' // icon
 
 export default function QMenu (props) {
-  let location = useLocation() // 获取 location 参数
-  const [x, setX] = useState(['/login'])
+  let { pathname } = useLocation() // 获取 location 参数
+  const [x, setX] = useState([pathname])
   const [openKeys, setOpenKeys] = useState(['sub1'])
 
   function getItem (label, key, icon, children) {

@@ -1,5 +1,6 @@
 import { history } from 'umi'
 import _ from 'lodash'
+import { message } from 'antd'
 import api from '@/services'
 
 export default {
@@ -8,7 +9,7 @@ export default {
 
   state: {
     // 表单回填
-    data: null
+    data: null,
   },
 
   reducers: {
@@ -18,7 +19,7 @@ export default {
         ...state,
         data: payload,
       }
-    }
+    },
   },
 
   effects: {
@@ -32,6 +33,33 @@ export default {
         history.push('/home')
         return res
       }
-    }
+    },
+    
+    // 详情
+    *sampleInfo ({ payload }, { call, put, select }) {
+      const res = yield call(api.sampleInfo, payload)
+
+      if (!res.code) {
+        return res.result
+      }
+    },
+    
+    // 上传
+    *samplePut ({ payload }, { call, put, select }) {
+      const res = yield call(api.samplePut, payload)
+
+      if (!res.code) {
+        message.success('提交成功!')
+      }
+    },
+
+    // 上传
+    *fetchUpload ({ payload }, { call, put, select }) {
+      const res = yield call(api.upload3, payload)
+
+      if (!res.code) {
+        return res.result
+      }
+    },
   }
 }

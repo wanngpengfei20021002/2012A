@@ -1,146 +1,82 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'dva'
-import { Spin, Pagination, Button, Table, Input, DatePicker, Form } from 'antd'
-import shortid  from 'shortid'
+import { history } from 'umi'
+import { Table, Button, Form, Input } from 'antd'
 import './styles.less'
 
-// xxxxxxx
 export default connect(state => {
   return {
-    result: state.home.data,
+    data: state.home.data,
+    count: state.home.count,
   }
 })(Home)
 function Home (props) {
-  const { dispatch, result } = props
-  // 数据驱动视图
-  const [form] = Form.useForm();
-  const [data, setData] = useState([]) // 实时表单数据
+  const { data, dispatch, count } = props
 
-  useEffect(() => {
+  const fun = (page = 1) => {
     dispatch({
       type: 'home/fetch',
       payload: {
-        limit: 20,
-        page: 1,
-        token: 'qTjFb9aSIralE9Mk8nwyU9lO9tQXm2jz',
+        limit: 1,
+        page,
       }
     })
-  }, [])
+  }
+  console.log(data, 'data');
+  useEffect(fun, [])
 
-  const isValue = opt => Object.values(JSON.parse(JSON.stringify(opt))).length === 4
-
-  // 提交表单
-  const submit = () => {
-    const info = data.find(dt => isValue(dt))
-
-    // 有数据 提交接口
-    if (info) {
-      dispatch({
-        type: 'home/fetchPut',
-        payload: {
-          info,
-          token: 'qTjFb9aSIralE9Mk8nwyU9lO9tQXm2jz'
-        }
-      })
-    }
+  const onEdit = id => {
+    history.push(`/login/${id}`)
   }
 
-  const onBlur = (id, key, evt) => {
-    form.validateFields()
-    // 修改表单值
-    data.find(dt => dt.id === id)[key] = evt.target.value
-    // 提交
-    submit()
-
-    setData([...data])
+  const onChange = page => {
+    fun(page)
   }
 
-  const getInput = ({ id, type, key }) => {
-    const xxx = {
-      input: <Input onBlur={evt => onBlur(id, key, evt)} />,
-      date: <DatePicker onBlur={evt => onBlur(id, 'sex', evt)} />,
+  function xxx (opt) {
+    if (typeof Number(opt) === 'number') {
+      return opt
     }
-    return (
-      <Form.Item
-        name={`${key}${id}`}
-        rules={[{required: true, message: '必填'}]}
-      >
-        {xxx[type]}
-      </Form.Item>
-    )
+    return text ? text : '--'
   }
 
   const columns = [
     {
-      title: '姓名',
-      dataIndex: 'name',
-      render: (text, all) => {
-        const { id } = all
-
-        return getInput({ 
-          id, 
-          key: 'name',
-          type: 'input',
-        })
-      },
+      title: '景点',
+      dataIndex: 'jingdian',
+      width: 300,
+      render: text => xxx(text)
     },
     {
-      title: '年龄',
-      dataIndex: 'age',
-      render: (text, all, index) => {
-        const { id } = all
-
-        return getInput({ 
-          id, 
-          key: 'age',
-          type: 'input',
-        })
-      },
-    },
-    {
-      title: '性别',
-      dataIndex: 'sex',
-      render: (text, all, index) => {
-        const { id } = all
-
-        return getInput({ 
-          id, 
-          key: 'sex',
-          type: 'date',
-        })
-      },
+      title: '操作',
+      fixed: 'right',
+      render: (text, opt) => {
+        return (
+          <Button 
+            type="link" 
+            onClick={() => onEdit(opt.id)}
+          >
+            编辑
+          </Button>
+        )
+      }
     },
   ]
 
-  // 新增数据
-  const onAdd = () => {
-    data.push({
-      id: shortid.generate(),
-      name: undefined,
-      age: undefined,
-      sex: undefined,
-    })
-    setData([...data])
-  }
-
   return (
-    <div>
-      <Button onClick={onAdd}>新增</Button>
-
-      <Form form={form}>
-        <Table
-          dataSource={data}
-          rowKey="id"
-          columns={columns}
-          onRow={(record) => {
-            return {
-              onDoubleClick: (event) => {
-                console.log('双击了');
-              },
-            };
-          }}
-        />
-      </Form>
-    </div>
+    <Table 
+      dataSource={data} 
+      columns={columns}
+      // scroll={{
+      //   x: 1200,
+      // }}
+      rowKey="id"
+      sticky
+      pagination={{
+        total: count,
+        pageSize: 1,
+        onChange,
+      }}
+    />
   )
 }

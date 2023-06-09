@@ -1,43 +1,21 @@
-class Animal {
-  name: string;
+class Person {
+  protected name: string;
+  protected constructor(theName: string) { this.name = theName; }
 }
 
-class Dog extends Animal {
-  breed: string;
+// Employee 能够继承 Person
+class Employee extends Person {
+  private department: string;
+
+  constructor(name: string, department: string) {
+      super(name);
+      this.department = department;
+  }
+
+  public getElevatorPitch() {
+      return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+  }
 }
 
-interface NotOkay {
-  // { name, breed }
-  [x: number]: Dog;
-  // { name }
-  [x: string]: Animal;
-}
-
-const x: NotOkay = {
-  1: new Dog(),
-}
-
-
-interface Counter {
-  (start: number): string;
-  interval: number;
-  reset(): void;
-}
-
-
-
-function getCounter(): Counter {
-  let counter = (function (start: number) { }) as Counter
-  counter.interval = 123;
-  counter.reset = function () { };
-  return counter;
-}
-
-let c = getCounter();
-
-console.log(c, 'c');
-
-
-c(10);
-c.reset();
-c.interval = 5.0;
+let howard = new Employee("Howard", "Sales");
+let john = new Person("John"); // 错误: 'Person' 的构造函数是被保护的.
