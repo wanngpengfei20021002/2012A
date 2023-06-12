@@ -11,6 +11,13 @@ const isEqual = require('react-fast-compare');
 // 深度比较
 const equal = (pProps, nProps) => isEqual(pProps, nProps);
 
+function getDay () {
+  const datas = dayjs().day()
+  const week = ['日', '一', '二', '三', '四', '五', '六']
+  return '星期' + week[datas]
+}
+
+
 // 获取 2个元素 最近的父元素
 const commonParentNode = (oNode1, oNode2) => {
   if (oNode1.contains(oNode2)) {
@@ -389,4 +396,5 @@ export {
   getFormValues, // 获取表单值
   percentage, // 百分比展示
   geturl,
+  getDay,
 };

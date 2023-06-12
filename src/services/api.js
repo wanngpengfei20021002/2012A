@@ -553,4 +553,5 @@ export default {
   user: `/adminapi/home/user`,
   storeProduct: `/adminapi/export/storeProduct`,
   userLevel: `/adminapi/user/user_level/create?id=0`,
+  weatherInfo: `https://restapi.amap.com/v3/weather/weatherInfo`,
 }

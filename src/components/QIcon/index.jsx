@@ -4,8 +4,10 @@ import { createFromIconfontCN } from '@ant-design/icons';
 import './styles.less'
 
 const IconFont = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/c/font_3885987_j8xrntk3iq.js',
+  scriptUrl: '//at.alicdn.com/t/c/font_3885987_1iqcwrfhm7j.js',
 })
+
+// 基础组件
 
 export default function QIcon (props) {
   const {

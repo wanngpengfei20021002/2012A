@@ -61,5 +61,14 @@ export default {
         return res.result
       }
     },
+    
+    // 上传
+    *weatherInfo ({ payload }, { call, put, select }) {
+      const res = yield call(api.weatherInfo, payload)
+
+      if (!res.code) {
+        return res
+      }
+    },
   }
 }
