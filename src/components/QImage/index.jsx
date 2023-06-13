@@ -17,6 +17,7 @@ export default function QImage (props) {
   return (
     <div>
       <Image
+        preview={false}
         onError={onError}
         width={width}
         src={src}

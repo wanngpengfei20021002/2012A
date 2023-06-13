@@ -12,8 +12,7 @@ export default {
   // 远程调试地址
   requestUrl: {
     // dev: '//www.lovetang.top',
-    dev: '//restapi.amap.com',
-    // dev: '//blogs.zdldove.top',
+    dev: '//blogs.zdldove.top',
     dev2: '//test-front-2.wandu.cn/cps',
     dev3: '//testzeus4.666shuwu.cn/cps',
     dev4: '//test-front-3.wandu.cn/cps',
@@ -24,8 +23,7 @@ export default {
 
   // 本地调试地址
   localhostUrl: {
-    start: 'https://restapi.amap.com',
-    // start: 'https://blogs.zdldove.top',
+    start: 'https://blogs.zdldove.top',
     // start: 'http://www.lovetang.top',
     start2: 'http://test-front-2.wandu.cn/cps',
     start3: 'http://testzeus4.666shuwu.cn/cps',

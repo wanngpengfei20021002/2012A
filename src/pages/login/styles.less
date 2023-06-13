@@ -1,19 +1,25 @@
 .login-box {
   border: 2px #f00 solid;
   display: grid;
+  // height: 500px;
   // 设置列宽 和 每行展示几个元素
   // fr === flex-grow
   // repeat(没行展示的数量, 每个元素的宽度)
   // auto-fit 每排最多能放几个, 只能跟 repeat 联用
   // minmax(最小宽度, 最大宽度)
-  grid-template-columns: 120px 120px 120px;
+  grid-template-columns: 120px 120px;
   // 设置每行的高度
-  grid-template-rows: 50px 50px 50px;
+  grid-template-rows: 100px 50px;
   // gap: 左右间距 上下间距 === grid-row-gap(上下间距) grid-column-gap(左右间距)
   gap: 10px 20px;
-  grid-template-areas:
-    '. header header'
-    'sidebar content content';
+  grid-auto-rows: 200px;
+  // grid-template-areas:
+  //   '. xxx header'
+  //   'sidebar content header';
+  // justify-items: stretch;
+  // align-items: end;
+  // justify-content: space-around;
+  // align-content: space-around;
   .x {
     border: 2px #000 solid;
   }

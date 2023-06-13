@@ -1,0 +1,28 @@
+.common-mcard {
+  border: 2px #f00 solid;
+  display: grid;
+  justify-content: space-between;
+  .common-mcard-box {
+    border: 2px #000 solid;
+    display: flex;
+    .common-mcard-person {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 0 0 0 5px;
+      border: 2px #000 solid;
+      .common-mcard-person-num {
+        span {
+          font-size: 20px;
+        }
+        em {
+          font-style: normal;
+          color: #AAA;
+        }
+      }
+      .common-mcard-person-title {
+        font-size: 14px;
+      }
+    }
+  }
+}
