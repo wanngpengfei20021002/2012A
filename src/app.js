@@ -6,7 +6,7 @@ import 'antd/dist/antd.less';
 import 'lib-flexible' // 往 html 标签插入一个 font-size 
 import './styles/index.less'
 
-// 缓存白名单
+// 缓存白名单ddd
 const persistConfig = {
   key: 'qfyw',
   storage,
