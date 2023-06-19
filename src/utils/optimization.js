@@ -369,7 +369,14 @@ const geturl = (url) => {
   return items;
 };
 
-
+const autoincrement = (num, time = 50) => {
+  setTimeout(() => {
+    if (num + 1 < num) {
+      num += 1
+    }
+  }, time)
+  return num
+}
 
 export {
   equal, // 深度比较
@@ -397,4 +404,5 @@ export {
   percentage, // 百分比展示
   geturl,
   getDay,
+  autoincrement, // 数字自增
 };

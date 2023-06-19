@@ -1,21 +1,30 @@
-class Person {
-  protected name: string;
-  protected constructor(theName: string) { this.name = theName; }
+class Greeter {
+	static standardGreeting = "Hello, there";
+	greeting: string;
+	greet() {
+			if (this.greeting) {
+					return "Hello, " + this.greeting;
+			}
+			else {
+					return Greeter.standardGreeting;
+			}
+	}
 }
 
-// Employee 能够继承 Person
-class Employee extends Person {
-  private department: string;
+let greeter1: Greeter;
+greeter1 = new Greeter();
+console.log(greeter1.greet());
 
-  constructor(name: string, department: string) {
-      super(name);
-      this.department = department;
-  }
+let greeterMaker: typeof Greeter = {
+	greeting: '1',
+	standardGreeting: '3333',
+	greet () {
 
-  public getElevatorPitch() {
-      return `Hello, my name is ${this.name} and I work in ${this.department}.`;
-  }
+	}
 }
+greeterMaker.standardGreeting = "Hey there!";
 
-let howard = new Employee("Howard", "Sales");
-let john = new Person("John"); // 错误: 'Person' 的构造函数是被保护的.
+let greeter2: Greeter = new greeterMaker();
+console.log(greeter2.greet());
+
+

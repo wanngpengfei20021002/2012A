@@ -11,6 +11,10 @@ import './styles.less'
     rowGap={rowGap} // 行间距
     type={1} [1] 1左右 2上下 // 排列类型 
     numSize={numSize} // 数字字体大小
+    mfont={
+      fontSize, // 文字大小
+      autoincrement, // 数字自增
+    }
   />
 */
 export default function MCard (props) {
@@ -19,7 +23,9 @@ export default function MCard (props) {
     width = 70,
     rowGap = '18px', // 行间距
     columns = 3, // 列数
-    numSize = '20px', // 数字字体大小
+    mfont = { // num 字体参数
+      fontSize: '20px', // 数字字体大小
+    },
     type = 2, // 默认左右布局 模式一
   } = props
 
@@ -42,9 +48,8 @@ export default function MCard (props) {
               <p className="common-mcard-person-num">
                 {/* 文字组件 */}
                 <MFont
-                  gradient='#F00 #0F0'
                   text={num}
-                  fontSize={numSize}
+                  {...mfont}
                 />
                 <em>人</em>
               </p>
@@ -66,13 +71,12 @@ export default function MCard (props) {
             <div className="common-mcard-tb1-text">
               {/* 文字组件 */}
               <MFont
-                gradient='#F00 #0F0'
                 text={num}
-                fontSize={numSize}
+                {...mfont}
               />
-              <em>人</em>
-              <p className="common-mcard-person-title">{title}</p>
+              <em className="common-mcard-tb1-text-person">人</em>
             </div>
+            <p className="common-mcard-tb1-title">{title}</p>
           </div>
         )
       })
