@@ -3,8 +3,9 @@ import storage from 'redux-persist/lib/storage'
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2'
 import 'antd/dist/antd.less';
 // import 'antd/dist/reset.css';
-import 'lib-flexible' // 往 html 标签插入一个 font-size 
+// import 'lib-flexible' // 往 html 标签插入一个 font-size 
 import './styles/index.less'
+import './lx.tsx'
 
 // 缓存白名单dddddddd
 const persistConfig = {
@@ -34,4 +35,3 @@ export const dva = {
     }
   },
 }
-

@@ -1,7 +1,7 @@
 import { defineConfig } from 'umi'
 // import theme from '../src/theme/variables'
-import theme from './theme.config'
-import routes from './router.config'
+import theme from './theme.config' // antd 皮肤
+import routes from './router.config' // 路由
 import env from './env'
 
 // const pxtorem = require('postcss-pxtorem')

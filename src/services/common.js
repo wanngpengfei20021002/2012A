@@ -8,3 +8,4 @@ export const wechatUploadMediaImage = payload => request.uploadPost(api.wechatUp
 
 
 export const getMediaTyleList = () => request.get(api.getMediaTypeList_put)
+export const orderList = payload => request.post(api.orderList, payload)

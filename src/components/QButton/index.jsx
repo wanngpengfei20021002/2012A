@@ -1,65 +1,105 @@
 import React from 'react'
 import { Button, Space } from 'antd'
-import { QIcon } from '../'
-import cs from 'classnames'
-import './styles.less'
+import is from 'is_js'
+import { QIcon } from '@@@'
+
+/*
+  const data = [
+    {
+      id: 1,
+      title: 文字
+      icon: {
+        type: 'company',
+        fontSize: 14,
+        color: '#F00',
+        iconAlign: 'right',
+        ...接受 icon 组件的所有属性
+      }
+    },
+    {
+      id: 1,
+    },
+  ]
+*/
 
 /* 
-  // Button 布局 right left center
-  // 间距
-  // 大小
-  // icon 左边 右边 (icon 单独客店)
-  // 幽灵按钮 颜色随便配
-  // 几排按钮 
-  // 更多
-  // id 传 不传
+  <QButton 
+    data={} // 数据
+    size={'a' | 'b' | 'c' | number} 按钮间距
+    onClick={onClick}
+    onIcon
+    raduis={number}
+    style
+    className
+    对齐
+  /> 
 */
+
 export default function QButton (props) {
   const {
-    data = [],
-    spaceSize = 20,
-    justify = 'left',
-    radius = 2,
-    onIcon = () => {}, // icon 回调
-    onClick = () => {}, // 按钮回调
-    size = 'middle' // 'large | middle | small' | 'x1' | 'x2'
+    data = [], // 数据
+    size = 12, // 按钮间距
+    onClick = () => {}, // 点击事件
+    onIcon = () => {}, // icon 点击
+    raduis = 5, // ...
   } = props
 
-  const fn = (itype, dt) => (
-    <QIcon 
-      type={itype} 
-      onClick={evt => {
-        evt.stopPropagation()
-        onIcon(dt)
-      }}
-    />
-  )
+  // 按钮间距类型
+  let xxx = {
+    a: 12,
+    b: 22,
+    c: 32,
+  } 
+
+  const x1 = opt => {
+    onClick(opt)
+  }
+
+  const x2 = (evt, opt) => {
+    console.log(evt, '1');
+    evt.stopPropagation()
+    onIcon(opt)
+  }
+
+  const icons = (opt, item) => {
+    return (
+      <QIcon 
+        onClick={evt => {
+          console.log(evt, 2);
+          x2(evt, opt)
+        }}
+        {...item} 
+      />
+    )
+  }
 
   return (
-    <div 
-      className="common-qbutton" 
-      style={{justifyContent: justify}}
-    >
+    <div>
       <Space
-        size={spaceSize}
-        className="xxx"
+        size={is.number(size) ? size : xxx[size]} // 按钮间距
       >
         {
-          // 单排循环
           data.map((dt, index) => {
             const { 
-              title, // 
-              iconPosition = 'right', 
-              itype = '',
-              ...item 
+              id, 
+              title, // 按钮文字
+              icon, // icon
+              ...item2
             } = dt
+
+            const { iconAlign: iconAlign2 } = icon || {}
+            const { iconAlign, ...item } = icon || {}
+
             return (
               <Button
-                key={index} {...item}
-                className={size}
-                onClick={() => onClick(dt)}
+                style={{borderRadius: raduis}}
+                onClick={() => x1(dt)}
+                key={id || index}
+                {...item2}
               >
-                {dt.title}
+                {iconAlign2 === 'left' ? icons(dt, item) : null}
+                {title}
+                {iconAlign2 === 'right' ? icons(dt, item) : null}
               </Button>
             )
           })

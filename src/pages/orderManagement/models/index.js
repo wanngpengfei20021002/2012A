@@ -9,32 +9,35 @@ export default {
   namespace: 'xxx',
 
   state: {
-
+    data: [],
+    count: 15, // 后台给的
   },
 
   reducers: {
-    setUserInfo (state, { payload }) {
+    setData (state, { payload }) {
       return {
         ...state,
-        userInfo: payload,
+        data: payload,
       }
     }, 
   },
 
   effects: {
     // 获取当前点击的路由
-    *fetchRouterList({ payload }, { call, put, select }) {
-      // const allRouters = yield select((state) => state.index.allRouters);
-      // // 在路由表中查找当前显示的路由
-      // let active = _.find(allRouters, { path: payload });
-      // if (!active) {
-      //   _.map(allRouters, (item) => {
-      //     const i = _.find(item.routes, { path: payload });
-      //     if (i) return (active = i);
-      //   });
-      // }
-      // // 如果能查找到则加入顶部路由历史记录中
-      // if (active) yield put({ type: 'setRouterList', payload: active });
+    *orderList({ payload }, { call, put, select }) {
+      const x1 = yield select(pre => {
+        // pre 是上一次的 所有的 state 的数据
+        return pre.xxx.data
+      })
+
+      const res = yield call(api.orderList, payload)
+
+      if (res.code == 200) {
+        yield put({
+          type: 'setData',
+          payload: [...x1, ...res.data], // 4条
+        })
+      }
     },
   },
 };

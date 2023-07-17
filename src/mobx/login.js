@@ -1,9 +1,8 @@
 import { makeAutoObservable } from 'mobx'
 import api from '@/services'
 
-// 2按钮 + -
-// 1按钮 请求接口数据
-
+// mobx 就是写一个 类
+// state, 修改 state 方法, 异步
 class LoginStore {
   constructor () {
     this.count = 0
@@ -12,19 +11,21 @@ class LoginStore {
     makeAutoObservable(this)
   }
 
-  onAdd = () => {
-    this.count++
-    console.log(this.count, 1);
+  // 修改 count
+  setCount = opt => {
+    this.count += opt
   }
 
-  onJian = () => {
-    this.count--
-    console.log(this.count, 2);
+  setData = opt => {
+    this.data = opt
   }
 
-  fetchData = async opt => {
-    const res = await api.fetchSampleList(opt)
-    this.data = res
+  fetchList = async opt => {
+    const res = await api.sampleList(opt)
+
+    if (!res.code) {
+      this.setData(res.result.list)
+    }
   }
 }
 

@@ -5,9 +5,14 @@ import {
 import { history } from 'umi'
 import './styles.less'
 
-
-// Fragments, <></> === <template>
 export default function XForm (props) {
+  useEffect(() => {
+    window.addEventListener('storage', data => {
+      console.log(data, 'data');
+      history.push('/login')
+    })
+  }, [])
+
   return (
     <>
       <h1>小花</h1>

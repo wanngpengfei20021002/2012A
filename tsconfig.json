@@ -23,7 +23,15 @@
     "noImplicitThis": true
   },
   "include": [
-    "src"
+    "src/**/*.ts",
+    "src/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/*.tsx",
+    "src/**/*.vue",
+    "src/typings/*.d.ts",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
   ],
   "extends": "./paths.json"
 }

@@ -1,30 +1,50 @@
-class Greeter {
-	static standardGreeting = "Hello, there";
-	greeting: string;
-	greet() {
-			if (this.greeting) {
-					return "Hello, " + this.greeting;
-			}
-			else {
-					return Greeter.standardGreeting;
-			}
-	}
-}
-
-let greeter1: Greeter;
-greeter1 = new Greeter();
-console.log(greeter1.greet());
-
-let greeterMaker: typeof Greeter = {
-	greeting: '1',
-	standardGreeting: '3333',
-	greet () {
-
-	}
-}
-greeterMaker.standardGreeting = "Hey there!";
-
-let greeter2: Greeter = new greeterMaker();
-console.log(greeter2.greet());
+// interface X{
+// 	q:number,
+// 	w:string,
+// 	r:string
+// }
+// interface Y{
+// 	q:number
+// 	r:string,
+// }
+// type XY = X | Y
+// let value: XY = {
+//     q:1,
+//     r:'r',
+//     w: '1',
+// }
 
 
+// interface Bird {
+//   fly();
+//   layEggs();
+// }
+
+// interface Fish {
+//   swim();
+//   layEggs();
+// }
+
+// type E = Fish | Bird
+
+// function getSmallPet(opt: E): E {
+//   return opt.
+// }
+
+// let a1 = 'swim'
+// let a2 = 'layEggs'
+
+// const obj: E = {
+//   swim () {
+
+//   },
+
+//   layEggs () {
+
+//   }
+// }
+
+// obj.
+
+// let pet = getSmallPet(obj);
+// pet

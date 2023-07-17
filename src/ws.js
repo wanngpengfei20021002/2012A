@@ -7,7 +7,6 @@ console.log(WebSocketServer, 'WebSocketServer');
 
 // connection 前端后台连接上了 
 wss.on('connection', function (ws) {
-  console.log(3333333);
   setInterval(() => {
     console.log(i, 'i');
     ws.send(i++)

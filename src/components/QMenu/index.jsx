@@ -4,6 +4,7 @@ import { history, useLocation } from 'umi'
 import { MailOutlined, CalendarOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons' // icon
 
 export default function QMenu (props) {
+  const { onClick } = props
   let { pathname } = useLocation() // 获取 location 参数
   const [x, setX] = useState([pathname])
   const [openKeys, setOpenKeys] = useState(['sub1'])
@@ -23,6 +24,7 @@ export default function QMenu (props) {
     getItem('Navigation Two', 'sub1', <AppstoreOutlined />, [
       getItem('登录', '/login'),
       getItem('首页', '/home'),
+      getItem('详情', '/order'),
       getItem('Submenu', 'sub1-2', null, [getItem('Option 5', '5'), getItem('Option 6', '6')]),
     ]),
     getItem('Navigation Three', 'sub2', <SettingOutlined />, [
@@ -48,6 +50,7 @@ export default function QMenu (props) {
 
   const onSelect = opt => {
     const { selectedKeys, key } = opt
+    onClick(opt)
     setX(selectedKeys) // 选中
     history.push(key)
   }

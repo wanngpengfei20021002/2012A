@@ -17,7 +17,7 @@ yarn.lock
 npm-debug.log*
 yarn-error.log
 yarn.lock
-
+lx.tsx
 # umi
 /src/.umi
 /src/.umi-production

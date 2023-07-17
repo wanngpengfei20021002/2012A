@@ -10,6 +10,7 @@ export default {
   state: {
     // 表单回填
     data: null,
+    list: [],
   },
 
   reducers: {
@@ -18,6 +19,14 @@ export default {
       return {
         ...state,
         data: payload,
+      }
+    },
+
+    // 修改详情
+    setList (state, { payload }) {
+      return {
+        ...state,
+        list: payload,
       }
     },
   },
@@ -70,5 +79,18 @@ export default {
         return res
       }
     },
+    
+    // 上传
+    *cities ({ payload }, { call, put, select }) {
+      const res = yield call(api.cities, payload)
+
+      if (!res.code) {
+        yield put({
+          type: 'setList',
+          payload: _.get(res, 'data.cityList', [])
+        })
+      }
+    },
   }
 }
+

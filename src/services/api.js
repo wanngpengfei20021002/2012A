@@ -553,5 +553,8 @@ export default {
   user: `/adminapi/home/user`,
   storeProduct: `/adminapi/export/storeProduct`,
   userLevel: `/adminapi/user/user_level/create?id=0`,
-  weatherInfo: `https://restapi.amap.com/v3/weather/weatherInfo`,
+
+  // 
+  cities: `/api/rest/cities?_1688517621270`,
+  orderList: `api/rest/orderList`,
 }

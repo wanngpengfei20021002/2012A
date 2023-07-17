@@ -8,10 +8,9 @@ export default {
     mirror2: '//img.readgood.cn/fe/distribution/mirror2/',
     production: '//img.readgood.cn/fe/distribution/production/',
   },
-
+ 
   // 远程调试地址
   requestUrl: {
-    // dev: '//www.lovetang.top',
     dev: '//blogs.zdldove.top',
     dev2: '//test-front-2.wandu.cn/cps',
     dev3: '//testzeus4.666shuwu.cn/cps',
@@ -24,7 +23,6 @@ export default {
   // 本地调试地址
   localhostUrl: {
     start: 'https://blogs.zdldove.top',
-    // start: 'http://www.lovetang.top',
     start2: 'http://test-front-2.wandu.cn/cps',
     start3: 'http://testzeus4.666shuwu.cn/cps',
     start4: 'http://test-front-3.wandu.cn/cps',
@@ -75,5 +73,7 @@ export default {
   },
 
   staticPath: `//img.readgood.cn/fe/distribution/statics/`, // 静态资源默认目录
-  imgPath: `//img.readgood.cn/` // 图片地址域名
+  imgPath: `//img.readgood.cn/`, // 图片地址域名
+
+  ws1: `ws://localhost:3199/socket.io/?EIO=4&transport=websocket&sid=VqKYUWNSDJDvLVKeAAAO`,
 };
