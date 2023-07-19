@@ -1,50 +1,34 @@
-// interface X{
-// 	q:number,
-// 	w:string,
-// 	r:string
+// interface Card {
+//   suit: string;
+//   card: number;
 // }
-// interface Y{
-// 	q:number
-// 	r:string,
+// interface Deck {
+//   suits: string[];
+//   cards: number[];
+//   createCardPicker(this: Deck): () => Card;
 // }
-// type XY = X | Y
-// let value: XY = {
-//     q:1,
-//     r:'r',
-//     w: '1',
-// }
-
-
-// interface Bird {
-//   fly();
-//   layEggs();
-// }
-
-// interface Fish {
-//   swim();
-//   layEggs();
-// }
-
-// type E = Fish | Bird
-
-// function getSmallPet(opt: E): E {
-//   return opt.
-// }
-
-// let a1 = 'swim'
-// let a2 = 'layEggs'
-
-// const obj: E = {
-//   swim () {
-
-//   },
-
-//   layEggs () {
-
+// let deck: Deck = {
+//   suits: ["hearts", "spades", "clubs", "diamonds"],
+//   cards: Array(52),
+//   createCardPicker: function(this: Deck) {
+//     return () => {
+//       let pickedCard = Math.floor(Math.random() * 52);
+//       let pickedSuit = Math.floor(pickedCard / 13);
+//       console.log(this, 'this');
+      
+//       return { 
+//         suit: this.suits[pickedSuit], 
+//         card: pickedCard % 13
+//       };
+//     }
 //   }
 // }
 
-// obj.
+// const xxx = deck.createCardPicker
+// xxx()()
 
-// let pet = getSmallPet(obj);
-// pet
+// let cardPicker = deck.createCardPicker();
+// let pickedCard = cardPicker();
+
+// alert("card: " + pickedCard.card + " of " + pickedCard.suit);
+

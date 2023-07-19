@@ -65,6 +65,7 @@
     "mobx-react": "^7.6.0",
     "mobx-react-lite": "^3.4.0",
     "moment": "^2.29.1",
+    "moveable": "^0.51.1",
     "numeral": "^2.0.6",
     "path-to-regexp": "^6.2.0",
     "perf_hooks": "0.0.1",

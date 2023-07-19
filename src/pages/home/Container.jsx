@@ -16,11 +16,11 @@ export const Container = props => {
     c: { top: 50, left: 20, title: '小花' },
   })
   const moveBox = useCallback((id, left, top) => {
-    // boxes[id].top = top
-    // boxes[id].left = left
-    boxes['d'] = { ...boxes[id] }
-    boxes['d'].top = top
-    boxes['d'].left = left
+    boxes[id].top = top
+    boxes[id].left = left
+    // boxes['d'] = { ...boxes[id] }
+    // boxes['d'].top = top
+    // boxes['d'].left = left
     setBoxes({ ...boxes })
   }, [boxes])
 

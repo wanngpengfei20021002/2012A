@@ -3,6 +3,7 @@ export default [
     path: '/user',
     routes: [
       { path: '/user/login', component: './login', title: '登录' },
+      { path: '/user/didaima', component: './didaima', title: '低代码' },
     ]
   },
   {
