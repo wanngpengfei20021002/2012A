@@ -4,6 +4,8 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Context } from '@/utils/context'
 import BasicComponents from './components/BasicComponents'
 import CanvasArea from './components/CanvasArea'
+import Public from './components/Public'
+
 import './styles.less'
 
 export default function Didaima (props) {
@@ -20,6 +22,9 @@ export default function Didaima (props) {
 
           {/* 画布 */}
           <CanvasArea />
+
+          {/* 配置 */}
+          <Public />
         </Context.Provider>
       </DndProvider>
     </div>

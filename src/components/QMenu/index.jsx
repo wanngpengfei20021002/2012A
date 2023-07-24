@@ -26,6 +26,7 @@ export default function QMenu (props) {
       getItem('首页', '/home'),
       getItem('详情', '/order'),
       getItem('低代码', '/user/didaima'),
+      getItem('测试', '/form'),
       getItem('Submenu', 'sub1-2', null, [getItem('Option 5', '5'), getItem('Option 6', '6')]),
     ]),
     getItem('Navigation Three', 'sub2', <SettingOutlined />, [

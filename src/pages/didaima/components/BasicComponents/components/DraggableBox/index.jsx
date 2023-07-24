@@ -1,5 +1,6 @@
 import { useContext, memo, useEffect } from 'react'
 import { useDrag } from 'react-dnd'
+import shortid from 'shortid'
 import useData from '@/pages/didaima/useData'
 import { Context } from '@/utils/context'
 import './styles.less'
@@ -9,11 +10,10 @@ export default memo(DraggableBox)
 function DraggableBox (props) {
   const { type2 } = useData()
   const { data, setData } = useContext(Context)
-  const { 
+  const {
     children, // 拖拽的子元素
     title, // 标题
     type, // 类型
-    id,
   } = props
 
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -23,11 +23,13 @@ function DraggableBox (props) {
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
         data.push({
-          id,
+          id: shortid.generate(),
           type,
           title,
           top: 0,
           left: 0,
+          active: true,
+          zihao: 12,
         })
         setData([...data])
         // console.log(item.name, 1)
@@ -40,7 +42,7 @@ function DraggableBox (props) {
   }), [])
 
   const opacity = isDragging ? 0.4 : 1
-  
+
   return (
     <div
       ref={drag}

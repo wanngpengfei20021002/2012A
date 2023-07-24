@@ -1,34 +1,34 @@
-// interface Card {
-//   suit: string;
-//   card: number;
-// }
-// interface Deck {
-//   suits: string[];
-//   cards: number[];
-//   createCardPicker(this: Deck): () => Card;
-// }
-// let deck: Deck = {
-//   suits: ["hearts", "spades", "clubs", "diamonds"],
-//   cards: Array(52),
-//   createCardPicker: function(this: Deck) {
-//     return () => {
-//       let pickedCard = Math.floor(Math.random() * 52);
-//       let pickedSuit = Math.floor(pickedCard / 13);
-//       console.log(this, 'this');
-      
-//       return { 
-//         suit: this.suits[pickedSuit], 
-//         card: pickedCard % 13
-//       };
-//     }
-//   }
-// }
+interface A {
+  user: string
+  name: string
+}
 
-// const xxx = deck.createCardPicker
-// xxx()()
+interface B {
+  age: number
+  name: string
+}
 
-// let cardPicker = deck.createCardPicker();
-// let pickedCard = cardPicker();
+type C = A | B
 
-// alert("card: " + pickedCard.card + " of " + pickedCard.suit);
+function zzz (opt: C): opt is A {
+  return (opt as A).user !== undefined
+}
 
+function fun (opt: C): C {
+  if (typeof opt === 'object') {
+    opt.user
+  }
+  return opt
+}
+
+function padLeft (value: string, padding: string | number) {
+  if (typeof padding === "number") {
+    return Array(padding + 1).join(" ") + value;
+  }
+
+  if (typeof padding === "string") {
+    return padding + value;
+  }
+
+  throw new Error(`Expected string or number, got '${padding}'.`);
+}

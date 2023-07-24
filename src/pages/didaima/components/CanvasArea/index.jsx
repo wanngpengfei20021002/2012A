@@ -5,10 +5,7 @@ import DraggableBox from './components/DraggableBox'
 import useData from '@/pages/didaima/useData'
 import './styles.less'
 
-
-
-
-export default function CanvasArea (props) {
+export default function CanvasArea(props) {
   // 拖拽的类型
   const { type2 } = useData()
   const { data, setData } = useContext(Context)
@@ -17,6 +14,7 @@ export default function CanvasArea (props) {
     // item: 拖拽的当前的元素的数据
     // drop: 拖拽元素拖拽结束触发
     drop: (item, monitor) => {
+      console.log('xxxx');
       // 返回 x, y 位置
       const { x, y } = monitor.getDifferenceFromInitialOffset()
       let left = Math.round(item.left + x)
@@ -43,7 +41,7 @@ export default function CanvasArea (props) {
       return dt
     }))
   }, [data])
-
+console.log(data, 'data2');
   // 真正的拖到里面了
   const isActive = canDrop && isOver
 
@@ -56,24 +54,31 @@ export default function CanvasArea (props) {
     backgroundColor = '#9F9'
   }
 
+  const fun = () => {
+    setData(data.map(dt => {
+      dt.active = false
+      return dt
+    }))
+  }
+console.log(data, 'data');
   return (
-    <div 
+    <div
       data-testid="dustbin"
       styleName="canvas-area"
+      onClick={fun}
     >
       <div
-        style={{backgroundColor}} 
         ref={drop}
         styleName="box"
+        style={{
+          backgroundColor,
+          position: 'relative',
+          border: '5px #000 solid'
+        }}
       >
         {
           data.map(dt => {
-            return (
-              <DraggableBox key={dt.id} {...dt}>
-              {/* <DraggableBox key={dt.id} {...dt} ref={ref}> */}
-                {dt.title}
-              </DraggableBox>
-            )
+            return <DraggableBox {...dt} key={dt.id} />
           })
         }
       </div>

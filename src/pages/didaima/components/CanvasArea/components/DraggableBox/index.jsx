@@ -1,72 +1,130 @@
-import { useContext, memo, useEffect, useRef } from 'react'
-import { useDrag } from 'react-dnd'
-import useData from '@/pages/didaima/useData'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import Moveable from 'react-moveable'
+import Crop from '../Crop'
 import { Context } from '@/utils/context'
 import './styles.less'
 
-import Moveable from "react-moveable";
+export default function App (props) {
+  const { data, setData } = useContext(Context)
+  const { id, title, active, zihao, yanse, type, height, width } = props
+  const targetRef = useRef(null);
+  const targetRef2 = useRef(null);
 
-// 拖拽的组件
-export default memo(DraggableBox)
-function DraggableBox (props) {
-  const ref = useRef(null)
-  const { type2 } = useData()
-  const { data } = useContext(Context)
-  const {
-    left,
-    top,
-    children, // 拖拽的子元素
-    title, // 标题
-    id,
-  } = props
+  const onClick = evt => {
+    console.log(44444);
+    evt.stopPropagation()
+    const dt = data.map(dt => {
+      if (dt.id === id) {
+        dt.active = true
 
-  const getStyles = () => {
-    const transform = `translate3d(${left}px, ${top}px, 0)`
-    return {
-      position: 'absolute',
-      transform,
-      opacity: isDragging ? 0 : 1,
-      height: isDragging ? 0 : '',
-    }
+      } else {
+        dt.active = false
+      }
+
+      return dt
+    })
+
+    setData(dt)
   }
 
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: type2,
-    item: { id, left, top, title }, // 拖拽组件传给盒子的参数
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  }), [data])
-
-  const opacity = isDragging ? 0.4 : 1
-
-  return (
-    <div>
+  function x1 () {
+    console.log(height, width, 'title');
+    return (
       <div
-        ref={drag}
-        style={{opacity, ...getStyles()}}
+        styleName="target" 
+        ref={targetRef}
+        style={{
+          fontSize: zihao + 'px',
+          fontFamily: '方正姚体',
+          color: yanse,
+        }}
       >
-        <div
-          ref={ref}
-          style={{width: 100, height: 100, border: '10px #f00 solid'}}
-        >
-          {children}
-        </div>
+        {/* <Crop 
+          title={title} 
+          height={height} 
+          width={width}
+        > */}
+          <div ref={v => v && v.appendChild(title)} />
+        {/* </Crop> */}
       </div>
+    )
+  }
+
+  function x2 () {
+    return (
+      <div
+        styleName="target" 
+        ref={targetRef}
+        style={{
+          fontSize: zihao + 'px',
+          fontFamily: '方正姚体',
+          color: yanse,
+        }}
+      >
+        {title}
+      </div>
+    )
+  }
+
+  function Xxx () {
+    if (type === 'IMG') {
+      return x1()
+    }
+
+    return x2()
+  }
+
+  const onClick2 = e => {
+    e.stopPropagation()
+    console.log(33333);
+  }
+
+  // useEffect(() => {
+  //   const fun = () => {
+  //     setData(data.map(dt => {
+  //       dt.active = false
+  //       return dt
+  //     }))
+  //   }
+
+  //   document.addEventListener('click', fun)
+
+  //   return () => {
+  //     document.removeEventListener('click', fun)
+  //   }
+  // }, [data])
+  
+  return (
+    <div onClick={onClick}>
+      <Xxx />
 
       <Moveable
-        target={ref} // moveable的对象
+        ref={targetRef2}
+        target={targetRef}
+        draggable={active}
+        throttleDrag={1}
+        edgeDraggable={false}
+        startDragRotate={0}
+        throttleDragRotate={0}
+        scalable={true}
+        renderDirections={active ? ["nw", "ne", "sw", "se"] : []} // 设置可以拖动的点的位置
+        keepRatio={false}
+        throttleScale={0}
         resizable={true} // 是否可以缩放
-        keepRatio={false} // 是否可以等比缩放
-        throttleResize={1} // 计算改变宽高位置的频率
-        renderDirections={["nw", "ne", "sw", "se"]} // 设置可以拖动的点的位置
-        origin={false} // 显示中心点
+        snappable={true}
+        bounds={{"left":0,"top":0,"right":0,"bottom":0,"position":"css"}}
+        onDrag={e => {
+          e.target.style.transform = e.transform;
+        }}
         onResize={e => {
           e.target.style.width = `${e.width}px`;
           e.target.style.height = `${e.height}px`;
+          e.target.style.transform = e.drag.transform;
+        }}
+        onBound={e => {
+          console.log(e);
         }}
       />
     </div>
-    
-  )
+  );
 }
