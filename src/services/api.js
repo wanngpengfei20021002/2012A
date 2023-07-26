@@ -557,4 +557,6 @@ export default {
   // 
   cities: `/api/rest/cities?_1688517621270`,
   orderList: `api/rest/orderList`,
+
+  filefile: `/file.php`,
 }

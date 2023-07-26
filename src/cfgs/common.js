@@ -8,7 +8,7 @@ export default {
     mirror2: '//img.readgood.cn/fe/distribution/mirror2/',
     production: '//img.readgood.cn/fe/distribution/production/',
   },
- 
+
   // 远程调试地址
   requestUrl: {
     dev: '//blogs.zdldove.top',

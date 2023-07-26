@@ -5,7 +5,6 @@ import { Context } from '@/utils/context'
 import BasicComponents from './components/BasicComponents'
 import CanvasArea from './components/CanvasArea'
 import Public from './components/Public'
-
 import './styles.less'
 
 export default function Didaima (props) {

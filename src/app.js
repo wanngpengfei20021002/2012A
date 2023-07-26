@@ -7,7 +7,7 @@ import 'antd/dist/antd.less';
 import './styles/index.less'
 import './lx.tsx'
 
-// 缓存白名单dddddddd
+// 缓存白名单ddddddddddd
 const persistConfig = {
   key: 'qfyw',
   storage,

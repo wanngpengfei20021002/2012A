@@ -11,7 +11,6 @@ export default function App (props) {
   const targetRef2 = useRef(null);
 
   const onClick = evt => {
-    console.log(44444);
     evt.stopPropagation()
     const dt = data.map(dt => {
       if (dt.id === id) {
@@ -28,7 +27,6 @@ export default function App (props) {
   }
 
   function x1 () {
-    console.log(height, width, 'title');
     return (
       <div
         styleName="target" 
@@ -39,13 +37,13 @@ export default function App (props) {
           color: yanse,
         }}
       >
-        {/* <Crop 
+        <Crop 
           title={title} 
           height={height} 
           width={width}
-        > */}
+        >
           <div ref={v => v && v.appendChild(title)} />
-        {/* </Crop> */}
+        </Crop>
       </div>
     )
   }
@@ -66,17 +64,12 @@ export default function App (props) {
     )
   }
 
-  function Xxx () {
+  function abc () {
     if (type === 'IMG') {
       return x1()
     }
 
     return x2()
-  }
-
-  const onClick2 = e => {
-    e.stopPropagation()
-    console.log(33333);
   }
 
   // useEffect(() => {
@@ -96,7 +89,7 @@ export default function App (props) {
   
   return (
     <div onClick={onClick}>
-      <Xxx />
+      {abc()}
 
       <Moveable
         ref={targetRef2}

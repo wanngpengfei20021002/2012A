@@ -14,7 +14,6 @@ export default function CanvasArea(props) {
     // item: 拖拽的当前的元素的数据
     // drop: 拖拽元素拖拽结束触发
     drop: (item, monitor) => {
-      console.log('xxxx');
       // 返回 x, y 位置
       const { x, y } = monitor.getDifferenceFromInitialOffset()
       let left = Math.round(item.left + x)
@@ -41,7 +40,7 @@ export default function CanvasArea(props) {
       return dt
     }))
   }, [data])
-console.log(data, 'data2');
+
   // 真正的拖到里面了
   const isActive = canDrop && isOver
 
@@ -60,7 +59,7 @@ console.log(data, 'data2');
       return dt
     }))
   }
-console.log(data, 'data');
+
   return (
     <div
       data-testid="dustbin"
