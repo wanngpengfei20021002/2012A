@@ -7,8 +7,6 @@ import 'antd/dist/antd.less';
 import './styles/index.less'
 import './lx.tsx'
 
-// ddddddd
-// dddddddffffff
 const persistConfig = {
   key: 'qfyw',
   storage,

@@ -1,22 +1,62 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Button, Upload, message, Image } from 'antd'
+import React, { useContext, useEffect } from 'react'
+import { Button, Upload, message } from 'antd'
 import shortid from 'shortid'
 import { connect } from 'dva'
 import { Context } from '@/utils/context'
 
-export default connect(state => {
-  return {}
+export default connect(({ QUpload }) => {
+  return {
+    url: QUpload.url, // 上传的图片
+  }
 })(QUpload)
 function QUpload (props) {
-  const { dispatch } = props
-  const { data, setData } = useContext(Context)
+  const { dispatch, url } = props
+  const { 
+    data, 
+    setData, 
+    id, // 上传图片的 id
+    setId 
+  } = useContext(Context)
 
+  useEffect(() => {
+    // 如果没新上传 不新增 data 数据
+    if (!url) return false
+
+    if (id) {
+      setData(data.map(dt => {
+        if (dt.id === id) {
+          dt.title = img2(url, id)
+        }
+        return dt
+      }))
+
+    } else {
+      const id = shortid.generate()
+      
+      data.push({
+        id,
+        type: 'IMG',
+        title: img2(url, id),
+        top: 0,
+        left: 0,
+        active: true,
+        zihao: 12,
+      })
+    }
+  }, [url])
+  
   function img2 (imgSrc, id) {
+    const el = document.querySelector('#' + id)
+    if (el) {
+      // 删除子节点
+      el.parentNode.removeChild(el)
+    }
     const img = document.createElement('img')
     img.src = imgSrc
+    img.id = id
     img.style.width = '100%'
     // 监听 img 加载完成
-    img.addEventListener('load', () => {
+    img.onload = () => {
       setData(data.map(dt => {
         if (dt.id === id) {
           dt.width = img.width
@@ -25,13 +65,13 @@ function QUpload (props) {
         }
         return dt
       }))
-    })
+      setId(id)
+    }
     return img
   }
 
   const beforeUpload = async file => {
     const { type } = file
-    const id = shortid.generate()
     
     if (type !== 'image/jpeg') {
       message.warning('格式不对')
@@ -40,19 +80,11 @@ function QUpload (props) {
     const formData = new FormData()
     formData.append('file', file)
 
-    const url = await dispatch({
+    setId()
+    
+    await dispatch({
       type: 'QUpload/fetchUpload',
       payload: formData,
-    })
-
-    data.push({
-      id,
-      type: 'IMG',
-      title: img2(url, id),
-      top: 0,
-      left: 0,
-      active: true,
-      zihao: 12,
     })
   }
 

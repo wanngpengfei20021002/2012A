@@ -1,12 +1,17 @@
 import { useContext, memo, useEffect } from 'react'
 import { useDrag } from 'react-dnd'
 import shortid from 'shortid'
+import { connect } from 'dva'
 import useData from '@/pages/didaima/useData'
 import { Context } from '@/utils/context'
 import './styles.less'
 
 // 拖拽的组件
-export default memo(DraggableBox)
+export default connect(state => {
+  return {
+    
+  }
+})(memo(DraggableBox))
 function DraggableBox (props) {
   const { type2 } = useData()
   const { data, setData } = useContext(Context)
@@ -22,6 +27,7 @@ function DraggableBox (props) {
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
+        console.log(JSON.stringify(data), 'data-2');
         data.push({
           id: shortid.generate(),
           type,
@@ -32,8 +38,6 @@ function DraggableBox (props) {
           zihao: 12,
         })
         setData([...data])
-        // console.log(item.name, 1)
-        // console.log(dropResult, 'dropResult');
       }
     },
     collect: (monitor) => ({

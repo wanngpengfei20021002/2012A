@@ -18,7 +18,7 @@ export default function CanvasArea(props) {
       const { x, y } = monitor.getDifferenceFromInitialOffset()
       let left = Math.round(item.left + x)
       let top = Math.round(item.top + y)
-      moveBox(item.id, left, top)
+      // moveBox(item.id, left, top)
       return item
     },
     collect: (monitor) => {
@@ -34,6 +34,7 @@ export default function CanvasArea(props) {
 
   const moveBox = useCallback((id, left, top) => {
     setData(data.map(dt => {
+      console.log(dt, 'xxxx');
       if (dt.id === id) {
         return { ...dt, left, top }
       }

@@ -8,11 +8,16 @@ const { Option } = Select
 const { TextArea } = Input
 
 export default function Attrs(props) {
-  const { data, setData } = useContext(Context)
+  const { 
+    data, 
+    setData,
+    setOpen, // 裁切弹窗组件的 open 
+  } = useContext(Context)
   const [color, setColor] = useState({ background: '#fff' }) // 颜色
 
   const [form] = Form.useForm()
 
+  // 表单数据修改 实时监听
   const onValuesChange = opt => {
     setData(data.map(dt => {
       if (dt.active) {
@@ -29,6 +34,11 @@ export default function Attrs(props) {
     setColor({ background: color.hex })
   }
 
+  // 裁切按钮
+  const onClick = () => {
+    setOpen(true)
+  }
+
   return (
     <Form
       labelCol={{span: 4}}
@@ -37,7 +47,7 @@ export default function Attrs(props) {
       onValuesChange={onValuesChange}
     >
       <Form.Item>
-        <Button>裁切</Button>
+        <Button onClick={onClick}>裁切</Button>
       </Form.Item>
 
       <Form.Item
@@ -50,6 +60,20 @@ export default function Attrs(props) {
       <Form.Item
         label="字号"
         name="zihao"
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="宽度"
+        name="width"
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="高度"
+        name="height"
       >
         <Input />
       </Form.Item>

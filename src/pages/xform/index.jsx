@@ -1,107 +1,122 @@
-import React, { useState, useRef } from 'react'
-import ReactCrop, { centerCrop, makeAspectCrop } from 'react-image-crop'
+import React, { useState, useRef, useEffect } from 'react'
 import { connect } from 'dva'
-import html2canvas from 'html2canvas'
+import * as echarts from 'echarts'
 import { Button, Upload, message, Image } from 'antd'
 
-import 'react-image-crop/dist/ReactCrop.css'
-
-// mediaWidth 宽度
-// mediaHeight 高度
-// aspect 宽高比
-// 设置裁切的位置, 大小
-function centerAspectCrop (mediaWidth, mediaHeight, aspect) {
-  return centerCrop(
-    makeAspectCrop(
-      {
-        unit: '%', // 单位 % || px
-        width: 90, // 默认宽度
-      },
-      aspect,
-      mediaWidth,
-      mediaHeight,
-    ),
-    mediaWidth,
-    mediaHeight,
-  )
-}
-
+const option = {
+  title: {
+    text: 'Stacked Line'
+  },
+  tooltip: {
+    show: true, // 是否显示
+    trigger: 'axis',
+    axisPointer: { // 坐标轴指示器配置项。
+      type: 'cross', // 'line' 直线指示器  'shadow' 阴影指示器  'none' 无指示器  'cross' 十字准星指示器。
+    },
+    backgroundColor: '#F99', // 提示框浮层的背景颜色。
+    borderColor: '#0F0', // 提示框浮层的边框颜色。
+    borderWidth: 10, // 提示框浮层的边框宽。
+    padding: 5, // 提示框浮层内边距，
+    textStyle: { // 提示框浮层的文本样式。
+      color: '#00f',
+      fontStyle: 'normal',
+      fontWeight: 'normal',
+      fontFamily: 'sans-serif',
+      fontSize: 20,
+    },
+    // 提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
+    // 模板变量有 {a}, {b}，{c}，分别表示系列名，数据名，数据值等
+    // formatter: '{a}--{b} 的成绩是 {c}'
+    formatter: function(arg) {
+      return '<h1>3333</h1>'
+    }
+  },
+  legend: {
+    data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Email',
+      type: 'line',
+      stack: 'Total',
+      data: [120, 132, 101, 134, 90, 230, 210]
+    },
+    {
+      name: 'Union Ads',
+      type: 'line',
+      stack: 'Total',
+      data: [220, 182, 191, 234, 290, 330, 310]
+    },
+    {
+      name: 'Video Ads',
+      type: 'line',
+      stack: 'Total',
+      data: [150, 232, 201, 154, 190, 330, 410]
+    },
+    {
+      name: 'Direct',
+      type: 'line',
+      stack: 'Total',
+      data: [320, 332, 301, 334, 390, 330, 320]
+    },
+    {
+      name: 'Search Engine',
+      type: 'line',
+      stack: 'Total',
+      data: [820, 932, 901, 934, 1290, 1330, 1320]
+    }
+  ]
+};
 export default connect(state => {
   return {}
 })(App)
 function App (props) {
-  const { dispatch } = props
-  const [imgSrc, setImgSrc] = useState('')
-  const imgRef = useRef(null)
-  const ref = useRef(null)
-  const [crop, setCrop] = useState()
-  const aspect = 16 / 9 // 比例
+  const ref = useRef()
+  const ref2 = useRef()
 
-  function onImageLoad (e) {
-    if (aspect) {
-      // currentTarget: 表示触发事件的当前的节点
-      // target: 当前触发事件的节点
-      const { width, height } = e.currentTarget
-      setCrop(centerAspectCrop(width, height, aspect))
-    }
-  }
+  /*  
+    * echart 封装组件
+    * onresize 监听改变
+    * 图标定制的
+  */
 
-  // 拖拽完成触发的
-  // onComplete(a, b)
-  // a 像素 参数
-  // b 百分比的参数
-  const onComplete = async ({ unit, ...item }) => {
-    const canvas = await html2canvas(imgRef.current, { ...item, useCORS: true, })
-    ref.current.innerHTML = ''
-    ref.current.appendChild(canvas)
-  }
-
-  const beforeUpload = async file => {
-    const formData = new FormData()
-    formData.append('file', file)
-
-    const url = await dispatch({
-      type: 'QUpload/fetchUpload',
-      payload: formData,
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      ref2.current.resize()
     })
-    const url2 = 'https://img0.baidu.com/it/u=1604010673,2427861166&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889'
-    setImgSrc(url2)
-    return false
-  }
+  }, [])
 
-  // 拖拽完成
-  const onChange = (_, percentCrop) => {
-    // percentCrop 确定要裁剪的图片的位置
-    setCrop(percentCrop)
-  }
+  useEffect(() => {
+    const myChart = ref2.current = echarts.init(ref.current)
+
+    // 绘制图表
+    myChart.setOption(option)
+  }, [])
 
   return (
-    <div className="App">
-      <Upload
-        beforeUpload={beforeUpload}
-      >
-        <Button>上传</Button>
-      </Upload>
-
-      {imgSrc && (
-        <ReactCrop
-          // 确定要裁剪的图片的位置
-          crop={crop}
-          onChange={onChange}
-          // 裁切区域的宽高比
-          aspect={aspect}
-          // 获取裁切后的图片
-          onComplete={onComplete}
-        >
-          <img
-            ref={imgRef}
-            alt="Crop me"
-            src={imgSrc}
-            onLoad={onImageLoad}
-          />
-        </ReactCrop>
-      )}
-      <div ref={ref}></div>
+    <div>
+      <div ref={ref} style={{width: '100%', height: 300}}></div>
     </div>
   )
 }
+
+
