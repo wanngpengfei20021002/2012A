@@ -48,13 +48,12 @@ function MyCrop (props) {
   // a 像素 参数
   // b 百分比的参数
   const onComplete = async ({ unit, ...item }) => {
-    console.log(item, 'item');
     dispatch({
       type: 'QModal/setItem',
       payload: item,
     })
   }
-
+console.log(url, 'url');
   return (
     <ReactCrop
       // 确定要裁剪的图片的位置

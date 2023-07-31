@@ -7,11 +7,7 @@ import { Context } from '@/utils/context'
 import './styles.less'
 
 // 拖拽的组件
-export default connect(state => {
-  return {
-    
-  }
-})(memo(DraggableBox))
+export default memo(DraggableBox)
 function DraggableBox (props) {
   const { type2 } = useData()
   const { data, setData } = useContext(Context)
@@ -27,7 +23,6 @@ function DraggableBox (props) {
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult()
       if (item && dropResult) {
-        console.log(JSON.stringify(data), 'data-2');
         data.push({
           id: shortid.generate(),
           type,
@@ -43,7 +38,7 @@ function DraggableBox (props) {
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
-  }), [])
+  }), [data])
 
   const opacity = isDragging ? 0.4 : 1
 

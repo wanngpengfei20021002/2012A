@@ -75,6 +75,7 @@ axios.interceptors.request.use(config => {
 
 // 响应拦截器
 axios.interceptors.response.use(response => {
+  console.log(response, 'response');
   return response
 
 }, error => {

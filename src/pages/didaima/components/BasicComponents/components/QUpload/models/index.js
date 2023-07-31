@@ -1,7 +1,9 @@
 import _ from 'lodash'
 import api from '@/services'
 
-const url = 'https://img1.baidu.com/it/u=624792125,331972384&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500'
+function abc (params) {
+  return `https://img1.baidu.com/it/u=624792125,331972384&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500&date=${new Date().getTime()}`
+}
 
 export default {
   namespace: 'QUpload',
@@ -14,7 +16,7 @@ export default {
     setUrl (state, { payload }) {
       return {
         ...state,
-        url: payload || url,
+        url: payload || abc(),
       }
     }, 
   },

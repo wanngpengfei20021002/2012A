@@ -14,12 +14,7 @@ export default function CanvasArea(props) {
     // item: 拖拽的当前的元素的数据
     // drop: 拖拽元素拖拽结束触发
     drop: (item, monitor) => {
-      // 返回 x, y 位置
-      const { x, y } = monitor.getDifferenceFromInitialOffset()
-      let left = Math.round(item.left + x)
-      let top = Math.round(item.top + y)
-      // moveBox(item.id, left, top)
-      return item
+ 
     },
     collect: (monitor) => {
       return {
@@ -31,16 +26,6 @@ export default function CanvasArea(props) {
       }
     },
   }))
-
-  const moveBox = useCallback((id, left, top) => {
-    setData(data.map(dt => {
-      console.log(dt, 'xxxx');
-      if (dt.id === id) {
-        return { ...dt, left, top }
-      }
-      return dt
-    }))
-  }, [data])
 
   // 真正的拖到里面了
   const isActive = canDrop && isOver
@@ -55,6 +40,7 @@ export default function CanvasArea(props) {
   }
 
   const fun = () => {
+    // 循环清空所有数据的 active
     setData(data.map(dt => {
       dt.active = false
       return dt

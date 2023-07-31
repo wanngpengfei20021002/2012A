@@ -31,12 +31,12 @@ function QUpload (props) {
       }))
 
     } else {
-      const id = shortid.generate()
+      const id2 = shortid.generate()
       
       data.push({
-        id,
+        id: id2,
         type: 'IMG',
-        title: img2(url, id),
+        title: img2(url, id2),
         top: 0,
         left: 0,
         active: true,
@@ -45,27 +45,29 @@ function QUpload (props) {
     }
   }, [url])
   
-  function img2 (imgSrc, id) {
-    const el = document.querySelector('#' + id)
+  function img2 (imgSrc, id2) {
+    console.log(document.querySelector('#' + id2), '2222222');
+    const el = document.querySelector('#' + id2)
     if (el) {
       // 删除子节点
       el.parentNode.removeChild(el)
     }
     const img = document.createElement('img')
     img.src = imgSrc
-    img.id = id
+    img.id = id2
     img.style.width = '100%'
+    
     // 监听 img 加载完成
     img.onload = () => {
       setData(data.map(dt => {
-        if (dt.id === id) {
+        if (dt.id === id2) {
           dt.width = img.width
           dt.height = img.height
           return dt
         }
         return dt
       }))
-      setId(id)
+      setId(id2)
     }
     return img
   }
@@ -86,6 +88,8 @@ function QUpload (props) {
       type: 'QUpload/fetchUpload',
       payload: formData,
     })
+
+    return false
   }
 
   return (

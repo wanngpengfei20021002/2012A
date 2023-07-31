@@ -13,7 +13,7 @@ export default function Didaima (props) {
   const [data, setData] = useState([])
   const [open, setOpen] = useState()
   const [id, setId] = useState() // 上传图片的 id
-  console.log(JSON.stringify(data), 'data-4');
+
   return (
     <div styleName="didaima">
       {/* 拖拽 */}
