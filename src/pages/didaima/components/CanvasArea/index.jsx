@@ -55,6 +55,7 @@ export default function CanvasArea(props) {
     >
       <div
         ref={drop}
+        id="canvas-area-box"
         styleName="box"
         style={{
           backgroundColor,

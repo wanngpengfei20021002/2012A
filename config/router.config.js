@@ -1,6 +1,7 @@
 export default [
   {
     path: '/user',
+    component: '@/layouts/B1',
     routes: [
       { path: '/user/login', component: './login', title: '登录' },
       { path: '/user/didaima', component: './didaima', title: '低代码' },

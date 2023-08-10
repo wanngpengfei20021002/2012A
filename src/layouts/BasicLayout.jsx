@@ -1,4 +1,5 @@
 import React from 'react'
+import { ConfigProvider } from 'antd';
 // import { Provider } from 'mobx-react'
 import { Tag } from 'antd'
 // import store from '@/mobx'
@@ -23,24 +24,25 @@ export default function BasicLayout (props) {
 	}
 
   return (
-		<div styleName="basic-layout">
-			<QMenu 
-				onClick={onClick}
-			/>
-			
-			<div styleName="box">
-				{/* 面包屑 */}
-				<QBreadcrumb />
-
-				{
-					Object.keys(data).map((dt, index) => {
-						return <Tag key={index} onClick={onClick2}>{dt}</Tag>
-					})
-				}
+			<div styleName="basic-layout">
+				<QMenu 
+					onClick={onClick}
+				/>
 				
-				{props.children}
+				<div styleName="box">
+					{/* 面包屑 */}
+					<QBreadcrumb />
+
+					{
+						Object.keys(data).map((dt, index) => {
+							return <Tag key={index} onClick={onClick2}>{dt}</Tag>
+						})
+					}
+					
+					{props.children}
+				</div>
 			</div>
-		</div>
+		
   )
 }
 

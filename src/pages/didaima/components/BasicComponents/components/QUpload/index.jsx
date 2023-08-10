@@ -21,6 +21,9 @@ function QUpload (props) {
   useEffect(() => {
     // 如果没新上传 不新增 data 数据
     if (!url) return false
+    if (!document.querySelector('#' + id)) {
+      return false
+    }
 
     if (id) {
       setData(data.map(dt => {
@@ -46,12 +49,12 @@ function QUpload (props) {
   }, [url])
   
   function img2 (imgSrc, id2) {
-    console.log(document.querySelector('#' + id2), '2222222');
-    const el = document.querySelector('#' + id2)
-    if (el) {
-      // 删除子节点
-      el.parentNode.removeChild(el)
-    }
+    console.log(id2, 'id2');
+    // const el = document.querySelector('#' + id2)
+    // if (el) {
+    //   // 删除子节点
+    //   el.parentNode.removeChild(el)
+    // }
     const img = document.createElement('img')
     img.src = imgSrc
     img.id = id2

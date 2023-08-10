@@ -13,7 +13,7 @@ export default defineConfig({
   hash: true,
   // 异步加载 懒加载
   dynamicImport: {
-    // loading: '@/pages/loading',
+    loading: '@/pages/loading',
   },
   antd: {
     mobile: false,
