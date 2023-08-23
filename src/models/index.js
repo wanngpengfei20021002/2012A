@@ -3,6 +3,7 @@ import { history } from 'umi';
 import is from 'is_js';
 import _ from 'lodash';
 import api from '@/services';
+import { Component } from 'react-image-crop';
 
 // 全局
 export default {
@@ -18,12 +19,12 @@ export default {
   },
 
   reducers: {
-    setUserInfo (state, { payload }) {
+    setUserInfo(state, { payload }) {
       return {
         ...state,
         userInfo: payload,
       }
-    }, 
+    },
 
     // 退出时清除路由历史记录
     setClear(state, { payload }) {
@@ -149,7 +150,7 @@ export default {
     },
 
     // 获取后端返回的路由权限
-    *getAllRouters({ payload, notice,market }, { call, put, select }) {
+    *getAllRouters({ payload, notice, market }, { call, put, select }) {
       const res = yield call(api.getMenuList);
       if (_.get(res, 'errno') == 0) {
         // 如果跳转的是通知公告页面，修改路由通知公告的path路径
@@ -168,7 +169,7 @@ export default {
     },
 
     // 获取用户资料信息
-    *getUserInfo ({}, { call, put }) {
+    *getUserInfo({ }, { call, put }) {
       const res = yield call(api.getAccoutInfo);
       yield put({
         type: 'setUserInfo',
@@ -179,8 +180,15 @@ export default {
     // payload: 传进来的参数
     // call(回调函数): 请求接口
     // put === dispatch
-    *fetch ({ payload }, { call, put, select }) {
+    *fetch({ payload }, { call, put, select }) {
       console.log('我是以全局的');
     },
   },
 };
+
+
+
+
+
+
+
