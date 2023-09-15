@@ -11,6 +11,7 @@ export default connect(({ QUpload }) => {
 })(QUpload)
 function QUpload (props) {
   const { dispatch, url } = props
+
   const { 
     data, 
     setData, 
@@ -21,10 +22,10 @@ function QUpload (props) {
   useEffect(() => {
     // 如果没新上传 不新增 data 数据
     if (!url) return false
-    if (!document.querySelector('#' + id)) {
-      return false
-    }
-
+    // if (!document.querySelector('#' + id)) {
+    //   return false
+    // }
+    console.log(22222);
     if (id) {
       setData(data.map(dt => {
         if (dt.id === id) {
@@ -46,15 +47,16 @@ function QUpload (props) {
         zihao: 12,
       })
     }
+
+    setData([...data])
   }, [url])
   
   function img2 (imgSrc, id2) {
-    console.log(id2, 'id2');
-    // const el = document.querySelector('#' + id2)
-    // if (el) {
-    //   // 删除子节点
-    //   el.parentNode.removeChild(el)
-    // }
+    const el = document.querySelector('#' + id2)
+    if (el) {
+      // 删除子节点
+      el.parentNode.removeChild(el)
+    }
     const img = document.createElement('img')
     img.src = imgSrc
     img.id = id2

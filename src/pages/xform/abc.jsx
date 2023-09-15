@@ -1,28 +1,16 @@
-import React, { memo, useContext } from 'react'
-import { Context } from '@/utils/context'
+import React, { useState, useContext, forwardRef, memo, useEffect } from 'react'
+import useMove from './useMove' // 自定义 hook
 
-const isEqual = require('react-fast-compare');
-
-export default Hoc(memo(Abc, isEqual))
-function Abc (props) {
-  const { x, setX } = props
-
-  console.log('我渲染了');
-
-  const onClick = () => {
-    setX(x + 1)
-  }
+// hook 规则
+// 1. 只能用在 函数组件 || 自定义hook组件内
+// 2. 只能用在函数的最顶层 不能用在 for if 等里面
+// 3. 不能用到 普通函数 或者 class 类里面
+export default function Abc (props, ref) {
+  const [xy, setXy]= useMove()
 
   return (
-    <div onClick={onClick}>
-      abc
+    <div>
+      abc: {xy.x} - {xy.y}
     </div>
   )
-}
-
-function Hoc (Com) {
-  return function () {
-    const xxx = useContext(Context)
-    return <Com {...xxx} />
-  }
 }

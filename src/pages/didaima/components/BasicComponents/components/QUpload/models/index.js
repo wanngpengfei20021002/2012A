@@ -14,6 +14,7 @@ export default {
 
   reducers: {
     setUrl (state, { payload }) {
+      console.log(4444);
       return {
         ...state,
         url: payload || abc(),

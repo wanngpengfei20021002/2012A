@@ -53,7 +53,7 @@ function MyCrop (props) {
       payload: item,
     })
   }
-console.log(url, 'url');
+
   return (
     <ReactCrop
       // 确定要裁剪的图片的位置

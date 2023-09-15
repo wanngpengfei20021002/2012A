@@ -122,7 +122,7 @@ async function post (url, payload = {}, other = {}) {
     method: 'post',
     url,
     baseURL: '/dev', // 公共路径
-    data: token ? { ...payload, token } : { ...payload },
+    data: token ? payload : payload ,
   })
     .catch(err => console.log(err))
 
