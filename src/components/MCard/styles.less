@@ -1,0 +1,52 @@
+.common-mcard {
+  border: 2px #f00 solid;
+  display: grid;
+  justify-content: space-between;
+  // 左右布局 模式一
+  .common-mcard-box {
+    border: 2px #000 solid;
+    display: flex;
+    .common-mcard-person {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 0 0 0 5px;
+      border: 2px #000 solid;
+      .common-mcard-person-num {
+        span {
+          font-size: 20px;
+        }
+        em {
+          font-style: normal;
+          color: #AAA;
+        }
+      }
+      .common-mcard-person-title {
+        font-size: 14px;
+      }
+    }
+  }
+
+  // 上下布局 模式一
+  .common-mcard-tb1 {
+    border: 2px #000 solid;
+    width: 160px;
+    height: 160px;
+    background: #AAA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    &-text {
+      &-person {
+        font-style: normal;
+        color: #FFF;
+        margin: 0 0 0 5px;
+      }
+    }
+    &-title {
+      color: #FFF;
+      font-size: 16px;
+    }
+  }
+}

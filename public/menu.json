@@ -1,0 +1,34 @@
+{
+    "data":[
+        {
+            "path":"/home",
+            "title":"首页"
+        },
+        {
+            "path":"/User",
+            "title":"推广管理",
+            "children":[
+                {
+                    "path":"/tablex",
+                    "title":"客服信息"
+                },
+                {
+                    "path":"/add",
+                    "title":"表单"
+                },
+                {
+                    "path":"/tab",
+                    "title":"表格"
+                },
+                {
+                    "path":"/addx",
+                    "title":"表单2"
+                }
+            ]
+        },
+        {
+            "path":"/uploadx",
+            "title":"上传"
+        }
+    ]
+}
